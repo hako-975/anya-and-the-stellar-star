@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Storyline : MonoBehaviour
 {
+    CanvasGroup canvasGroup;
+    Animation animationStoryline;
+
     public Characters character;
     
     public enum Mood
@@ -31,6 +34,11 @@ public class Storyline : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animationStoryline = GetComponent<Animation>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
+
+
         for (int i = 0; i < character.charactersSprite.Length; i++)
         {
             if (mood.ToString() == character.charactersSprite[i].name)
@@ -43,5 +51,7 @@ public class Storyline : MonoBehaviour
         characterImage.sprite = character.charactersSprite[moodIndex];
         nameText.text = character.name;
         conversationText.text = conversation;
+
+        animationStoryline.Play();
     }
 }

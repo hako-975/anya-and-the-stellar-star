@@ -51,7 +51,7 @@ public class Storyline : MonoBehaviour
         characterImage.sprite = character.charactersSprite[moodIndex];
         nameText.text = character.name;
         conversationText.text = conversation;
-
+        
         animationStoryline.Play();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StorylineManager : MonoBehaviour
 {
@@ -17,7 +18,41 @@ public class StorylineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResetPages();
+        for (int i = 0; i < storylines.Length; i++)
+        {
+            if ((i == 0) && (i != storylines.Length - 1))
+            {
+                var gameObjectNextButton = Instantiate(nextButton, transform.position, Quaternion.identity, storylines[i].gameObject.transform);
+                gameObjectNextButton.transform.localPosition = new Vector3(450f, -750f);
+                gameObjectNextButton.GetComponent<Button>().onClick.AddListener(NextButton);
+            }
+            else if ((i == storylines.Length - 1) && (i != 0))
+            {
+                var gameObjectPreviousButton = Instantiate(previousButton, transform.position, Quaternion.identity, storylines[i].gameObject.transform);
+                gameObjectPreviousButton.transform.localPosition = new Vector3(-175f, -750f);
+                gameObjectPreviousButton.GetComponent<Button>().onClick.AddListener(PreviousButton);
+
+                var gameObjectCloseButton = Instantiate(closeButton, transform.position, Quaternion.identity, storylines[storylines.Length - 1].gameObject.transform);
+                gameObjectCloseButton.transform.localPosition = new Vector3(450f, -750f);
+                gameObjectCloseButton.GetComponent<Button>().onClick.AddListener(CloseButton);
+            }
+            else if (i == storylines.Length - 1)
+            {
+                var gameObjectCloseButton = Instantiate(closeButton, transform.position, Quaternion.identity, storylines[storylines.Length - 1].gameObject.transform);
+                gameObjectCloseButton.transform.localPosition = new Vector3(450f, -750f);
+                gameObjectCloseButton.GetComponent<Button>().onClick.AddListener(CloseButton);
+            }
+            else
+            {
+                var gameObjectPreviousButton = Instantiate(previousButton, transform.position, Quaternion.identity, storylines[i].gameObject.transform);
+                gameObjectPreviousButton.transform.localPosition = new Vector3(-175f, -750f);
+                gameObjectPreviousButton.GetComponent<Button>().onClick.AddListener(PreviousButton);
+
+                var gameObjectNextButton = Instantiate(nextButton, transform.position, Quaternion.identity, storylines[i].gameObject.transform);
+                gameObjectNextButton.transform.localPosition = new Vector3(450f, -750f);
+                gameObjectNextButton.GetComponent<Button>().onClick.AddListener(NextButton);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -35,7 +70,6 @@ public class StorylineManager : MonoBehaviour
             }
         }
     }
-
     public void NextButton()
     {
         // if not end of storylines
@@ -44,10 +78,10 @@ public class StorylineManager : MonoBehaviour
             storylines[currentStoryline].gameObject.SetActive(false);
 
             currentStoryline += 1;
+            storylines[currentStoryline].GetComponent<CanvasGroup>().alpha = 0;
             storylines[currentStoryline].gameObject.SetActive(true);
+            storylines[currentStoryline].GetComponent<Animation>().Play();
         }
-
-        SetActiveButton();
     }
 
     public void PreviousButton()
@@ -58,93 +92,16 @@ public class StorylineManager : MonoBehaviour
             storylines[currentStoryline].gameObject.SetActive(false);
 
             currentStoryline -= 1;
+            storylines[currentStoryline].GetComponent<CanvasGroup>().alpha = 0;
             storylines[currentStoryline].gameObject.SetActive(true);
-        }
-
-        SetActiveButton();
-    }
-
-    void SetActiveButton()
-    {
-        // if current page == first
-        if (currentStoryline == 0)
-        {
-            // disable prev
-            previousButton.SetActive(false);
-
-            // if current page not last
-            if (currentStoryline != storylines.Length - 1)
-            {
-                nextButton.SetActive(true);
-                closeButton.SetActive(false);
-            }
-            else
-            {
-                closeButton.SetActive(true);
-                nextButton.SetActive(false);
-            }
-        }
-        // if current page == last
-        else if (currentStoryline == storylines.Length - 1)
-        {
-            closeButton.SetActive(true);
-
-            // disable next
-            nextButton.SetActive(false);
-
-            // if current page not first
-            if (currentStoryline != 0)
-            {
-                previousButton.SetActive(true);
-            }
-            else
-            {
-                previousButton.SetActive(false);
-            }
-        }
-        else
-        {
-            if (currentStoryline == storylines.Length - 1)
-            {
-                closeButton.SetActive(true);
-            }
-            else
-            {
-                closeButton.SetActive(false);
-            }
-
-            nextButton.SetActive(true);
-            previousButton.SetActive(true);
+            storylines[currentStoryline].GetComponent<Animation>().Play();
         }
     }
 
-    void ResetPages()
-    {
-        closeButton.SetActive(false);
-
-        // set all deactive
-        for (int i = 0; i < storylines.Length; i++)
-        {
-            storylines[i].gameObject.SetActive(false);
-        }
-
-        currentStoryline = 0;
-
-        if (currentStoryline == storylines.Length - 1)
-        {
-            closeButton.SetActive(true);
-        }
-
-        // set first active
-        // storylines[currentStoryline].gameObject.SetActive(true);
-
-        SetActiveButton();
-    }
 
     public void CloseButton()
     {
-        ResetPages();
-        gameObject.SetActive(false);
+        storylines[currentStoryline].GetComponent<Animation>().PlayQueued("StorylineSlideRight");
     }
 
     public void StartTitleFade()

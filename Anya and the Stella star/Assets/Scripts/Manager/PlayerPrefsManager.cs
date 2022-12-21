@@ -25,6 +25,66 @@ public class PlayerPrefsManager : MonoBehaviour
         SceneManager.LoadScene("Loading");
     }
 
+    #region Level
+    public int GetLevelAt()
+    {
+        return PlayerPrefs.GetInt("LevelAt", 1);
+    }
+
+    public int SetLevelAt(int level)
+    {
+        PlayerPrefs.SetInt("LevelAt", level);
+        return GetLevelAt();
+    }
+
+    public int GetCurrentLevel()
+    {
+        return PlayerPrefs.GetInt("CurrentLevel", 0);
+    }
+
+    public int SetCurrentLevel()
+    {
+        // level 1, build index 1
+        PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+        return GetCurrentLevel();
+    }
+    #endregion
+
+    #region Settings
+    public float GetVolumeMusic()
+    {
+        return PlayerPrefs.GetFloat("VolumeMusic", -5f);
+    }
+
+    public float SetVolumeMusic(float volumeMusic)
+    {
+        PlayerPrefs.SetFloat("VolumeMusic", volumeMusic);
+        return GetVolumeMusic();
+    }
+
+    public float GetVolumeSFX()
+    {
+        return PlayerPrefs.GetFloat("VolumeSFX", -5f);
+    }
+
+    public float SetVolumeSFX(float volumeSFX)
+    {
+        PlayerPrefs.SetFloat("VolumeSFX", volumeSFX);
+        return GetVolumeSFX();
+    }
+    public int GetLanguage()
+    {
+        // 2 is index for english
+        return PlayerPrefs.GetInt("LanguageIndex", 2);
+    }
+
+    public int SetLanguage(int languageIndex)
+    {
+        PlayerPrefs.SetInt("LanguageIndex", languageIndex);
+        return GetLanguage();
+    }
+    #endregion
+
     public void DeleteKey(string key)
     {
         PlayerPrefs.DeleteKey(key);

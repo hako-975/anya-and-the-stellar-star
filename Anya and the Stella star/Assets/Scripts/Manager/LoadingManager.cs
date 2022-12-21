@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class LoadingManager : MonoBehaviour
 {
-    public Image loadingBar;
+    public Slider loadingBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        loadingBar.fillAmount = 0;
+        loadingBar.value = 0;
 
         StartCoroutine(LoadAsync(PlayerPrefsManager.instance.GetNextScene()));
     }
@@ -31,7 +31,7 @@ public class LoadingManager : MonoBehaviour
             while (!async.isDone)
             {
                 float progress = Mathf.Clamp01(async.progress);
-                loadingBar.fillAmount = progress;
+                loadingBar.value = progress;
                 yield return new WaitForEndOfFrame();
             }
         }

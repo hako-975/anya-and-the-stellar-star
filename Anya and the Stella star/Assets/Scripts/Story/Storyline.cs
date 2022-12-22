@@ -8,6 +8,7 @@ public class Storyline : MonoBehaviour
 {
     CanvasGroup canvasGroup;
     Animation animationStoryline;
+    StorylineManager storylineManager;
 
     public Characters character;
     
@@ -21,7 +22,7 @@ public class Storyline : MonoBehaviour
 
     public Mood mood;
 
-    [TextArea]
+    [TextArea(7, 7)]
     public string conversation;
 
     private int moodIndex = 0;
@@ -34,6 +35,7 @@ public class Storyline : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        storylineManager = GetComponentInParent<StorylineManager>();
         animationStoryline = GetComponent<Animation>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
@@ -53,5 +55,30 @@ public class Storyline : MonoBehaviour
         conversationText.text = conversation;
         
         animationStoryline.Play();
+    }
+
+    public void HistoryButton()
+    {
+        storylineManager.historyPanel.SetActive(true);
+    }
+
+    public void AutoButton()
+    {
+
+    }
+
+    public void SaveButton()
+    {
+
+    }
+
+    public void LoadButton()
+    {
+
+    }
+
+    public void SettingsButton()
+    {
+        storylineManager.settingsPanel.SetActive(true);
     }
 }

@@ -10,8 +10,12 @@ public class Storyline : MonoBehaviour
     Animation animationStoryline;
     StorylineManager storylineManager;
 
+    [HideInInspector]
+    public bool hasCharacter;
+
+    [HideInInspector]
     public Characters character;
-    
+
     public enum Mood
     {
         amazed,
@@ -19,7 +23,8 @@ public class Storyline : MonoBehaviour
         hello,
         idle
     }
-
+    
+    [HideInInspector]
     public Mood mood;
 
     [TextArea(7, 7)]
@@ -28,7 +33,10 @@ public class Storyline : MonoBehaviour
     private int moodIndex = 0;
 
     [Header("References Object")]
+    [HideInInspector]
     public Image characterImage;
+    
+    [HideInInspector]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI conversationText;
 

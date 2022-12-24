@@ -410,5 +410,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD Story
       objectReference: {fileID: 0}
+    - target: {fileID: 5147349374495226910, guid: ee88fc7b9b922d048b89db2971e12bf7, type: 3}
+      propertyPath: mood
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee88fc7b9b922d048b89db2971e12bf7, type: 3}

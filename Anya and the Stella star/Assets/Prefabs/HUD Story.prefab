@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6810402122374394007}
   - component: {fileID: 2931578430838071275}
   m_Layer: 5
-  m_Name: Storyline Without Name
+  m_Name: Storyline Without Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4766f0057da09b74ea6e305d3339cb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasCharacter: 0
   character: {fileID: 0}
   mood: 3
   conversation: Suatu pagi di sebuah sekolah Eden
@@ -505,7 +506,7 @@ GameObject:
   - component: {fileID: 2859644801812601816}
   - component: {fileID: 5816489359128554378}
   m_Layer: 5
-  m_Name: Storyline Without Name (2)
+  m_Name: Storyline Without Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,6 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4766f0057da09b74ea6e305d3339cb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasCharacter: 0
   character: {fileID: 0}
   mood: 3
   conversation: Suatu pagi di sebuah sekolah Eden...
@@ -2186,7 +2188,7 @@ GameObject:
   - component: {fileID: 786749275063203536}
   - component: {fileID: 4791709121477158156}
   m_Layer: 5
-  m_Name: Storyline Without Name (1)
+  m_Name: Storyline Without Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2224,6 +2226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4766f0057da09b74ea6e305d3339cb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasCharacter: 0
   character: {fileID: 0}
   mood: 3
   conversation: Ada seorang anak perempuan berambut merah muda
@@ -6898,8 +6901,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4766f0057da09b74ea6e305d3339cb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasCharacter: 1
   character: {fileID: 11400000, guid: c6e3f6812455775419304bd2e1cc383a, type: 2}
-  mood: 3
+  mood: 0
   conversation: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

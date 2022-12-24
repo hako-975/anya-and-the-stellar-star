@@ -21,6 +21,8 @@ public class LoadingManager : MonoBehaviour
         PlayerPrefsManager.instance.DeleteKey("NextScene");
 
         AsyncOperation async = SceneManager.LoadSceneAsync(nextScene);
+        
+        async.allowSceneActivation = false;
 
         if (async == null)
         {
@@ -32,8 +34,17 @@ public class LoadingManager : MonoBehaviour
             {
                 float progress = Mathf.Clamp01(async.progress);
                 loadingBar.value = progress;
-                yield return new WaitForEndOfFrame();
+                
+                if (async.progress >= 0.9f)
+                {
+                    yield return new WaitForSeconds(1);
+                    async.allowSceneActivation = true;
+                }
+
+                yield return null;
             }
         }
+
+        
     }
 }

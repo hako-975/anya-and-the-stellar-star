@@ -7,13 +7,12 @@ using UnityEngine.UI;
 public class Storyline : MonoBehaviour
 {
     CanvasGroup canvasGroup;
-    Animation animationStoryline;
+    
     StorylineManager storylineManager;
 
     [HideInInspector]
-    public bool hasCharacter;
+    public Animation animationStoryline;
 
-    [HideInInspector]
     public Characters character;
 
     public enum Mood
@@ -24,7 +23,6 @@ public class Storyline : MonoBehaviour
         idle
     }
     
-    [HideInInspector]
     public Mood mood;
 
     [TextArea(7, 7)]
@@ -33,16 +31,12 @@ public class Storyline : MonoBehaviour
     private int moodIndex = 0;
 
     [Header("References Object")]
-    [HideInInspector]
     public Image characterImage;
-    
-    [HideInInspector]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI conversationText;
 
     [HideInInspector]
     public bool isFinishedText = false;
-
 
     float delay;
     string currentText = "";

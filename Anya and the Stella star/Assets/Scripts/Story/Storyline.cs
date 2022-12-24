@@ -49,20 +49,22 @@ public class Storyline : MonoBehaviour
         storylineManager = GetComponentInParent<StorylineManager>();
         animationStoryline = GetComponent<Animation>();
         canvasGroup = GetComponent<CanvasGroup>();
-        canvasGroup.alpha = 0;
-        
+        canvasGroup.alpha = 1;
 
-        for (int i = 0; i < character.charactersSprite.Length; i++)
+        if (character != null)
         {
-            if (mood.ToString() == character.charactersSprite[i].name)
+            for (int i = 0; i < character.charactersSprite.Length; i++)
             {
-                moodIndex = i;
-                break;
+                if (mood.ToString() == character.charactersSprite[i].name)
+                {
+                    moodIndex = i;
+                    break;
+                }
             }
-        }
 
-        characterImage.sprite = character.charactersSprite[moodIndex];
-        nameText.text = character.name;
+            characterImage.sprite = character.charactersSprite[moodIndex];
+            nameText.text = character.name;
+        } 
         
         animationStoryline.Play();
 
@@ -96,9 +98,7 @@ public class Storyline : MonoBehaviour
 
     IEnumerator ShowText()
     {
-        yield return new WaitForSeconds(1);
-
-        for (int i = 0; i < conversation.Length; i++)
+        for (int i = 0; i <= conversation.Length; i++)
         {
             if (isFinishedText)
             {

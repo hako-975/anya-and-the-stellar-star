@@ -39,7 +39,6 @@ public class StorylineManager : MonoBehaviour
 
                         storylines[currentStoryline].GetComponent<CanvasGroup>().alpha = 0;
                         storylines[currentStoryline].gameObject.SetActive(true);
-                        storylines[currentStoryline].GetComponent<Animation>().Play();
                         storyActive.isFinishedText = false;
                         return;
                     }

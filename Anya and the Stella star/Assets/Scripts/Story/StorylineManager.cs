@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StorylineManager : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class StorylineManager : MonoBehaviour
 
     public Storyline[] storylines;
 
+    int currentStoryline = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,42 @@ public class StorylineManager : MonoBehaviour
     public void StartTitleFade()
     {
         StartCoroutine(TitleFade());
+    }
+
+    public void NextStoryline()
+    {
+        foreach (Storyline storyActive in storylines)
+        {
+            if (storyActive.gameObject.activeSelf)
+            {
+                if (storyActive.isFinishedText)
+                {
+                    // if not last
+                    if (currentStoryline != storylines.Length - 1)
+                    {
+                        storylines[currentStoryline].gameObject.SetActive(false);
+                        currentStoryline += 1;
+
+                        storylines[currentStoryline].GetComponent<CanvasGroup>().alpha = 0;
+                        storylines[currentStoryline].gameObject.SetActive(true);
+                        storylines[currentStoryline].GetComponent<Animation>().Play();
+                        storyActive.isFinishedText = false;
+                        return;
+                    }
+                    else
+                    {
+                        // if last close
+                        storylines[currentStoryline].gameObject.SetActive(false);
+                    }
+                } 
+                else
+                {
+                    storyActive.isFinishedText = true;
+                    return;
+                }
+            }
+
+        }
     }
 
     IEnumerator TitleFade()

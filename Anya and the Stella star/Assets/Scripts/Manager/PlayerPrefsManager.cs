@@ -72,6 +72,18 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.SetFloat("VolumeSFX", volumeSFX);
         return GetVolumeSFX();
     }
+
+    public float GetTextSpeed()
+    {
+        return PlayerPrefs.GetFloat("TextSpeed", 0.1f);
+    }
+
+    public float SetTextSpeed(float textSpeed)
+    {
+        PlayerPrefs.SetFloat("TextSpeed", textSpeed);
+        return GetTextSpeed();
+    }
+
     public int GetLanguage()
     {
         // 2 is index for english

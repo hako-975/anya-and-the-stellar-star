@@ -22,6 +22,7 @@ public class SettingsManager : MonoBehaviour
 
     public Slider musicSlider;
     public Slider sfxSlider;
+    public Slider textSpeedSlider;
 
     public TMP_Dropdown languageDropdown;
 
@@ -29,6 +30,7 @@ public class SettingsManager : MonoBehaviour
     {
         musicSlider.value = PlayerPrefsManager.instance.GetVolumeMusic();
         sfxSlider.value = PlayerPrefsManager.instance.GetVolumeSFX(); 
+        textSpeedSlider.value = PlayerPrefsManager.instance.GetTextSpeed();
         languageDropdown.value = PlayerPrefsManager.instance.GetLanguage();
 
 
@@ -50,10 +52,17 @@ public class SettingsManager : MonoBehaviour
         sfxMixer.SetFloat("VolumeSFX", volumeSFX);
         PlayerPrefsManager.instance.SetVolumeSFX(volumeSFX);
     }
+
+    public void SetTextSpeed(float textSpeed)
+    {
+        PlayerPrefsManager.instance.SetTextSpeed(textSpeed);
+    }
+
     public void ResetButton()
     {
         PlayerPrefsManager.instance.DeleteKey("VolumeMusic");
         PlayerPrefsManager.instance.DeleteKey("VolumeSFX");
+        PlayerPrefsManager.instance.DeleteKey("TextSpeed");
         PlayerPrefsManager.instance.DeleteKey("LanguageIndex");
     }
 

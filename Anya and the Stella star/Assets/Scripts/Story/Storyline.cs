@@ -32,14 +32,25 @@ public class Storyline : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI conversationText;
 
+    [HideInInspector]
+    public bool isFinishedText = false;
+
+
+    float delay;
+    string currentText = "";
+
     // Start is called before the first frame update
     void Start()
     {
+        delay = PlayerPrefsManager.instance.GetTextSpeed();
+
+        conversationText.text = "";
+
         storylineManager = GetComponentInParent<StorylineManager>();
         animationStoryline = GetComponent<Animation>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
-
+        
 
         for (int i = 0; i < character.charactersSprite.Length; i++)
         {
@@ -52,9 +63,10 @@ public class Storyline : MonoBehaviour
 
         characterImage.sprite = character.charactersSprite[moodIndex];
         nameText.text = character.name;
-        conversationText.text = conversation;
         
         animationStoryline.Play();
+
+        StartCoroutine(ShowText());
     }
 
     public void HistoryButton()
@@ -80,5 +92,27 @@ public class Storyline : MonoBehaviour
     public void SettingsButton()
     {
         storylineManager.settingsPanel.SetActive(true);
+    }
+
+    IEnumerator ShowText()
+    {
+        yield return new WaitForSeconds(1);
+
+        for (int i = 0; i < conversation.Length; i++)
+        {
+            if (isFinishedText)
+            {
+                conversationText.text = conversation;
+                yield return null;
+            }
+            else
+            {
+                currentText = conversation.Substring(0, i);
+                conversationText.text = currentText;
+                yield return new WaitForSeconds(delay);
+            }
+        }
+
+        isFinishedText = true;
     }
 }

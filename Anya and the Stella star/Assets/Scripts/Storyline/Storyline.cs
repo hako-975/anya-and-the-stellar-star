@@ -52,7 +52,7 @@ public class Storyline : MonoBehaviour
     [HideInInspector]
     public bool isFinishedText = false;
 
-    float delay;
+    public float delay;
     string currentText = "";
 
     StorylineManager storylineManager;
@@ -142,7 +142,7 @@ public class Storyline : MonoBehaviour
         storylineManager.NextStoryline();
     }
 
-    IEnumerator ShowText()
+    public IEnumerator ShowText()
     {
         for (int i = 0; i <= conversation.Length; i++)
         {

@@ -16,6 +16,72 @@ public class Choice : Storyline
     // Start is called before the first frame update
     void Start()
     {
+
+        if (backgroundImage == null)
+        {
+            backgroundImageReferences.sprite = null;
+            backgroundImageReferences.color = Color.clear;
+        }
+        else
+        {
+            backgroundImageReferences.sprite = backgroundImage;
+        }
+
+        nameText.text = characterName;
+        nameText.color = characterColorName;
+
+        delay = PlayerPrefsManager.instance.GetTextSpeed();
+        conversationText.text = "";
+        StartCoroutine(ShowText());
+
+        if (characterMoodLeft != null)
+        {
+            characterImageLeft.sprite = characterMoodLeft;
+            characterImageLeft.color = Color.white;
+        }
+
+        if (characterMoodMiddle != null)
+        {
+            characterImageMiddle.sprite = characterMoodMiddle;
+            characterImageMiddle.color = Color.white;
+        }
+
+        if (characterMoodRight != null)
+        {
+            characterImageRight.sprite = characterMoodRight;
+            characterImageRight.color = Color.white;
+        }
+
+        if (conversationPanelType.ToString() == "withName")
+        {
+            nameText.enabled = true;
+            conversationPanel.GetComponent<Image>().sprite = conversationPanelWithName;
+        }
+        else if (conversationPanelType.ToString() == "withoutName")
+        {
+            nameText.enabled = false;
+            conversationPanel.GetComponent<Image>().sprite = conversationPanelWithoutName;
+        }
+
+        if (backgroundMusic)
+        {
+            backgroundMusicReferences.Stop();
+            backgroundMusicReferences.clip = backgroundMusic;
+            backgroundMusicReferences.playOnAwake = true;
+            backgroundMusicReferences.loop = true;
+            backgroundMusicReferences.Play();
+        }
+
+        if (voiceCharacter)
+        {
+            voiceCharacterReferences.Stop();
+            voiceCharacterReferences.clip = voiceCharacter;
+            backgroundMusicReferences.playOnAwake = true;
+            backgroundMusicReferences.loop = false;
+            voiceCharacterReferences.Play();
+        }
+
+
         for (int i = 0; i < choice.Length; i++)
         {
             GameObject choiceInstantiate = Instantiate(prefabChoiceButton, Vector3.zero, Quaternion.identity, choiceButtonList.transform);

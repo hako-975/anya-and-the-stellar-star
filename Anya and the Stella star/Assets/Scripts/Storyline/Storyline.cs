@@ -52,7 +52,7 @@ public class Storyline : MonoBehaviour
     [HideInInspector]
     public bool isFinishedText = false;
 
-    public float delay;
+    protected float delay;
     string currentText = "";
 
     StorylineManager storylineManager;

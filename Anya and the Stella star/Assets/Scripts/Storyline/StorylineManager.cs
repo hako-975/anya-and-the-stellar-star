@@ -56,6 +56,7 @@ public class StorylineManager : MonoBehaviour
                     {
                         // if last, close
                         storylines[currentStoryline].gameObject.SetActive(false);
+                        return;
                     }
                 }
                 else

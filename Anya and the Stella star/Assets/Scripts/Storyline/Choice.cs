@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class Choice : Storyline
 {
-    [Header("Choices")]
-    public ChoiceStruct[] choice;
+    [Header("Choice Data")]
+    public ChoiceData[] choiceData;
 
+    [Header("References Object")]
     public GameObject prefabChoiceButton;
-
     public GameObject choiceButtonList;
 
+    StorylineManager storylineManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        storylineManager = GetComponentInParent<StorylineManager>();
+        
         if (backgroundImage == null)
         {
             backgroundImageReferences.sprite = null;
@@ -82,17 +84,63 @@ public class Choice : Storyline
         }
 
 
-        for (int i = 0; i < choice.Length; i++)
+        for (int i = 0; i < choiceData.Length; i++)
         {
             GameObject choiceInstantiate = Instantiate(prefabChoiceButton, Vector3.zero, Quaternion.identity, choiceButtonList.transform);
             // text button
-            choiceInstantiate.GetComponent<ChoiceButton>().buttonText.text = choice[i].choiceText;
+            choiceInstantiate.GetComponent<ChoiceButton>().buttonText.text = choiceData[i].choiceText;
 
             // storyline
             int j = i;
-            choiceInstantiate.GetComponent<Button>().onClick.AddListener(() => {
+            choiceInstantiate.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                // remove choice button list
                 choiceButtonList.SetActive(false);
-                choice[j].storylineChoice.SetActive(true);
+
+                // set first storyline choice active
+                choiceData[j].storylineChoice[0].SetActive(true);
+
+
+                for (int k = 0; k < choiceData[j].storylineChoice.Length; k++)
+                {
+                    int l = k;
+
+                    if (l != choiceData[j].storylineChoice.Length - 1)
+                    {
+                        choiceData[j].storylineChoice[l].GetComponent<Storyline>().conversationPanel.GetComponent<Button>().onClick.AddListener(() =>
+                        {
+                            if (choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText)
+                            {
+                                choiceData[j].storylineChoice[l].SetActive(false);
+                                choiceData[j].storylineChoice[l + 1].SetActive(true);
+                                return;
+                            }
+                            else
+                            {
+                                choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText = true;
+                                return;
+                            }
+                        });
+                    }
+                    else
+                    {
+                        choiceData[j].storylineChoice[l].GetComponent<Storyline>().conversationPanel.GetComponent<Button>().onClick.AddListener(() =>
+                        {
+                            if (choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText)
+                            {
+                                choiceData[j].storylineChoice[l].SetActive(false);
+                                storylineManager.NextStoryline();
+                                return;
+                            }
+                            else
+                            {
+                                choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText = true;
+                                return;
+                            }
+                        });
+                    }
+
+                }
             });
         }
     }

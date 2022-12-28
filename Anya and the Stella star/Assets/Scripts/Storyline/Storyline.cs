@@ -126,7 +126,13 @@ public class Storyline : MonoBehaviour
             voiceCharacterReferences.Play();
         }
 
-        conversationPanel.GetComponent<Button>().onClick.AddListener(NextStoryline);
+        if (transform.parent.name == "Storyline Manager")
+        {
+            conversationPanel.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                storylineManager.NextStoryline();
+            });
+        }
     }
 
     void Update()
@@ -136,12 +142,7 @@ public class Storyline : MonoBehaviour
             StartCoroutine(ShowText());
         }
     }
-
-    void NextStoryline()
-    {
-        storylineManager.NextStoryline();
-    }
-
+    
     public IEnumerator ShowText()
     {
         for (int i = 0; i <= conversation.Length; i++)

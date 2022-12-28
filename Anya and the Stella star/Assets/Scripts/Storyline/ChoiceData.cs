@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ChoiceStruct
+public class ChoiceData
 {
     public string choiceText;
-    public GameObject storylineChoice;
+    public GameObject[] storylineChoice;
 }

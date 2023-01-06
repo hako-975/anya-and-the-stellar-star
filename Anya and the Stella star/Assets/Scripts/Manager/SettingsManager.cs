@@ -15,8 +15,6 @@ public class SettingsManager : MonoBehaviour
     [HideInInspector]
     public bool isSettings = false;
 
-    public Button backButton;
-
     public AudioMixer musicMixer;
     public AudioMixer sfxMixer;
 
@@ -32,15 +30,8 @@ public class SettingsManager : MonoBehaviour
         sfxSlider.value = PlayerPrefsManager.instance.GetVolumeSFX(); 
         textSpeedSlider.value = PlayerPrefsManager.instance.GetTextSpeed();
         languageDropdown.value = PlayerPrefsManager.instance.GetLanguage();
-
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            BackButtonAction();
-        }
-
-        backButton.onClick.AddListener(delegate { BackButtonAction(); });
     }
+
     public void SetVolumeMusic(float volumeMusic)
     {
         musicMixer.SetFloat("VolumeMusic", volumeMusic);
@@ -64,11 +55,5 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefsManager.instance.DeleteKey("VolumeSFX");
         PlayerPrefsManager.instance.DeleteKey("TextSpeed");
         PlayerPrefsManager.instance.DeleteKey("LanguageIndex");
-    }
-
-    void BackButtonAction()
-    {
-        isSettings = false;
-        gameObject.SetActive(false);
     }
 }

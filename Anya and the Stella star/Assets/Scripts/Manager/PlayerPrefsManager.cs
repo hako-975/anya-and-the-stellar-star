@@ -25,6 +25,46 @@ public class PlayerPrefsManager : MonoBehaviour
         SceneManager.LoadScene("Loading");
     }
 
+    #region History
+    public void SetHistoryCount(int count)
+    {
+        PlayerPrefs.SetInt("HistoryCount", count);
+    }
+
+    public void SetHistoryName(string name, int historyTo)
+    {
+        PlayerPrefs.SetString("HistoryName" + historyTo, name);
+    }
+
+    public void SetHistoryColor(Color color, int historyTo)
+    {
+        // ex: RGBA(1.000, 1.000, 1.000, 1.000)
+        PlayerPrefs.SetFloat("HistoryColorR" + historyTo, color.r);
+        PlayerPrefs.SetFloat("HistoryColorG" + historyTo, color.g);
+        PlayerPrefs.SetFloat("HistoryColorB" + historyTo, color.b);
+    }
+
+    public void SetHistoryConversation(string conversation, int historyTo)
+    {
+        PlayerPrefs.SetString("HistoryConversation" + historyTo, conversation);
+    }
+
+    public void ResetHistory()
+    {
+        for (int i = 0; i < PlayerPrefs.GetInt("HistoryCount", 0); i++)
+        {
+            DeleteKey("HistoryName" + i);
+            DeleteKey("HistoryColorR" + i);
+            DeleteKey("HistoryColorG" + i);
+            DeleteKey("HistoryColorB" + i);
+            DeleteKey("HistoryConversation" + i);
+        }
+
+        DeleteKey("HistoryCount");
+    }
+
+    #endregion
+
     #region Level
     public int GetLevelAt()
     {

@@ -49,13 +49,20 @@ public class Storyline : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI conversationText;
 
+    [Header("References Button")]
+    public Button historyButton;
+    public Button autoButton;
+    public Button saveButton;
+    public Button loadButton;
+    public Button settingsButton;
+
     [HideInInspector]
     public bool isFinishedText = false;
 
     protected float delay;
     string currentText = "";
 
-    StorylineManager storylineManager;
+    protected StorylineManager storylineManager;
 
     // Start is called before the first frame update
     void Start()
@@ -133,16 +140,34 @@ public class Storyline : MonoBehaviour
                 storylineManager.NextStoryline();
             });
         }
+
+        historyButton.onClick.AddListener(() =>
+        {
+            storylineManager.historyPanel.SetActive(true);
+        });
+
+        autoButton.onClick.AddListener(() =>
+        {
+            // do something auto storyline
+        });
+
+        saveButton.onClick.AddListener(() =>
+        {
+            // do something save current storyline
+        });
+
+        loadButton.onClick.AddListener(() =>
+        {
+            // do something load current storyline
+        });
+
+        settingsButton.onClick.AddListener(() =>
+        {
+            storylineManager.settingsPanel.SetActive(true);
+        });
+
     }
 
-    void Update()
-    {
-        if (conversationText.text == "")
-        {
-            StartCoroutine(ShowText());
-        }
-    }
-    
     public IEnumerator ShowText()
     {
         for (int i = 0; i <= conversation.Length; i++)
@@ -150,7 +175,7 @@ public class Storyline : MonoBehaviour
             if (isFinishedText)
             {
                 conversationText.text = conversation;
-                yield return null;
+                break; 
             }
             else
             {
@@ -159,6 +184,11 @@ public class Storyline : MonoBehaviour
                 yield return new WaitForSeconds(delay);
             }
         }
+
+        PlayerPrefsManager.instance.SetHistoryName(characterName, PlayerPrefs.GetInt("HistoryCount", 0));
+        PlayerPrefsManager.instance.SetHistoryColor(nameText.color, PlayerPrefs.GetInt("HistoryCount", 0));
+        PlayerPrefsManager.instance.SetHistoryConversation(conversation, PlayerPrefs.GetInt("HistoryCount", 0));
+        PlayerPrefsManager.instance.SetHistoryCount(PlayerPrefs.GetInt("HistoryCount", 0) + 1);
 
         isFinishedText = true;
     }

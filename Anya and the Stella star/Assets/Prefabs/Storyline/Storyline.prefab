@@ -2355,7 +2355,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9018723410629638721}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2390,8 +2390,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   backgroundMusic: {fileID: 0}
   voiceCharacter: {fileID: 0}
-  conversationPanelType: 0
-  conversation: 
+  conversationPanelType: 1
+  conversation: Pada sebuah kelas ada gadis kecil bernama Anya
   characterImageLeft: {fileID: 3742322780714682117}
   characterImageMiddle: {fileID: 1912758170068527999}
   characterImageRight: {fileID: 1912758169654682229}
@@ -2403,4 +2403,9 @@ MonoBehaviour:
   voiceCharacterReferences: {fileID: 1912758169327245270}
   nameText: {fileID: 1127489636212558487}
   conversationText: {fileID: 7783861142320999848}
+  historyButton: {fileID: 3885061780831093618}
+  autoButton: {fileID: 2714453404276960275}
+  saveButton: {fileID: 1518790364034470384}
+  loadButton: {fileID: 275363775727545738}
+  settingsButton: {fileID: 6091972502585303218}
   isFinishedText: 0

@@ -3303,6 +3303,7 @@ GameObject:
   - component: {fileID: 5096498630169020556}
   - component: {fileID: 5096498630169020557}
   - component: {fileID: 5096498630169020547}
+  - component: {fileID: 7543385962241276230}
   m_Layer: 5
   m_Name: Settings Panel
   m_TagString: Untagged
@@ -3381,13 +3382,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSettings: 0
-  backButton: {fileID: 5096498628959324177}
   musicMixer: {fileID: 24100000, guid: cc8bcb2af986de544aecc6197d63cd44, type: 2}
   sfxMixer: {fileID: 24100000, guid: c70d80d940a44fe4e967f51a88b020d1, type: 2}
   musicSlider: {fileID: 5096498628696120658}
   sfxSlider: {fileID: 5096498630289309210}
   textSpeedSlider: {fileID: 2767746013536821350}
   languageDropdown: {fileID: 5096498629685810320}
+--- !u!114 &7543385962241276230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096498630169020559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ed5d3d7105638439f2b7022db41e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backButton: {fileID: 5096498628959324177}
 --- !u!1 &5096498630276759924
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,6 @@ public class Choice : Storyline
     public GameObject prefabChoiceButton;
     public GameObject choiceButtonList;
 
-    StorylineManager storylineManager;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +81,30 @@ public class Choice : Storyline
             voiceCharacterReferences.Play();
         }
 
+        historyButton.onClick.AddListener(() =>
+        {
+            storylineManager.historyPanel.SetActive(true);
+        });
+
+        autoButton.onClick.AddListener(() =>
+        {
+            // do something auto storyline
+        });
+
+        saveButton.onClick.AddListener(() =>
+        {
+            // do something save current storyline
+        });
+
+        loadButton.onClick.AddListener(() =>
+        {
+            // do something load current storyline
+        });
+
+        settingsButton.onClick.AddListener(() =>
+        {
+            storylineManager.settingsPanel.SetActive(true);
+        });
 
         for (int i = 0; i < choiceData.Length; i++)
         {

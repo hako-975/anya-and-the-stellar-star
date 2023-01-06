@@ -1965,6 +1965,11 @@ MonoBehaviour:
   voiceCharacterReferences: {fileID: 2676715088845883978}
   nameText: {fileID: 2676715090793888308}
   conversationText: {fileID: 2676715090529592729}
+  historyButton: {fileID: 2676715089990660615}
+  autoButton: {fileID: 2676715090599776325}
+  saveButton: {fileID: 2676715089881110221}
+  loadButton: {fileID: 2676715089038758313}
+  settingsButton: {fileID: 2676715089446006502}
   isFinishedText: 0
   choiceData: []
   prefabChoiceButton: {fileID: 6389544793706705049, guid: 78a922a74e9fce34dbc54cb77a5d8ef8, type: 3}

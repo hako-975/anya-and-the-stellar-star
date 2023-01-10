@@ -1354,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2676715090576825699, guid: 06abfdb9e38394443b8140fc2cb94053, type: 3}
       propertyPath: conversation
-      value: (Perkenalan)
+      value: (Perkenalan)(Perkenalan)(Perkenalan)(Perkenalan)(Perkenalan)(Perkenalan)
       objectReference: {fileID: 0}
     - target: {fileID: 2676715090576825699, guid: 06abfdb9e38394443b8140fc2cb94053, type: 3}
       propertyPath: choiceData.Array.size

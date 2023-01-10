@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Choice : Storyline
 {
-    [Header("Choice Data")]
     public ChoiceData[] choiceData;
 
     [Header("References Object")]
@@ -104,6 +103,11 @@ public class Choice : Storyline
         settingsButton.onClick.AddListener(() =>
         {
             storylineManager.settingsPanel.SetActive(true);
+        });
+
+        conversationPanel.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            isFinishedText = true;
         });
 
         for (int i = 0; i < choiceData.Length; i++)

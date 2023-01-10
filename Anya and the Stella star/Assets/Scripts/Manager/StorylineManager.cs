@@ -13,6 +13,11 @@ public class StorylineManager : MonoBehaviour
 
     int currentStoryline = 0;
     
+    void Awake()
+    {
+        historyPanel.SetActive(true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

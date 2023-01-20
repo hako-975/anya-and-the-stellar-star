@@ -223,6 +223,10 @@ PrefabInstance:
       value: Yes 2Yes 2Yes 2Yes 2Yes 2Yes 2Yes 2Yes 2Yes 2Yes 2Yes 2Yes 2
       objectReference: {fileID: 0}
     - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
+      propertyPath: characterName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
       propertyPath: conversationPanelType
       value: 1
       objectReference: {fileID: 0}
@@ -793,6 +797,10 @@ PrefabInstance:
       value: APABILA
       objectReference: {fileID: 0}
     - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
+      propertyPath: characterName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
       propertyPath: characterColorName.b
       value: 1
       objectReference: {fileID: 0}
@@ -1059,6 +1067,10 @@ PrefabInstance:
         1Yes 1Yes 1Yes 1Yes 1
       objectReference: {fileID: 0}
     - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
+      propertyPath: characterName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
       propertyPath: conversationPanelType
       value: 1
       objectReference: {fileID: 0}
@@ -1247,6 +1259,10 @@ PrefabInstance:
       value: no
       objectReference: {fileID: 0}
     - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
+      propertyPath: characterName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
       propertyPath: conversationPanelType
       value: 1
       objectReference: {fileID: 0}
@@ -1355,6 +1371,10 @@ PrefabInstance:
     - target: {fileID: 2676715090576825699, guid: 06abfdb9e38394443b8140fc2cb94053, type: 3}
       propertyPath: conversation
       value: (Perkenalan)(Perkenalan)(Perkenalan)(Perkenalan)(Perkenalan)(Perkenalan)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676715090576825699, guid: 06abfdb9e38394443b8140fc2cb94053, type: 3}
+      propertyPath: characterName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2676715090576825699, guid: 06abfdb9e38394443b8140fc2cb94053, type: 3}
       propertyPath: choiceData.Array.size
@@ -1736,6 +1756,10 @@ PrefabInstance:
     - target: {fileID: 9018723410629638721, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
       propertyPath: m_Name
       value: Storyline
+      objectReference: {fileID: 0}
+    - target: {fileID: 9018723410629638722, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}
+      propertyPath: characterName
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38c247ea9bc65174b9a51da38d258629, type: 3}

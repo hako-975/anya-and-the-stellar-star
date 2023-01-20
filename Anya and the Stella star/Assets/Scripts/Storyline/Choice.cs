@@ -120,52 +120,58 @@ public class Choice : Storyline
             int j = i;
             choiceInstantiate.GetComponent<Button>().onClick.AddListener(() => 
             {
-                // remove choice button list
-                choiceButtonList.SetActive(false);
-
-                // set first storyline choice active
-                choiceData[j].storylineChoice[0].SetActive(true);
-
-
-                for (int k = 0; k < choiceData[j].storylineChoice.Length; k++)
+                if (isFinishedText)
                 {
-                    int l = k;
+                    // remove choice button list
+                    choiceButtonList.SetActive(false);
 
-                    if (l != choiceData[j].storylineChoice.Length - 1)
-                    {
-                        choiceData[j].storylineChoice[l].GetComponent<Storyline>().conversationPanel.GetComponent<Button>().onClick.AddListener(() =>
-                        {
-                            if (choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText)
-                            {
-                                choiceData[j].storylineChoice[l].SetActive(false);
-                                choiceData[j].storylineChoice[l + 1].SetActive(true);
-                                return;
-                            }
-                            else
-                            {
-                                choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText = true;
-                                return;
-                            }
-                        });
-                    }
-                    else
-                    {
-                        choiceData[j].storylineChoice[l].GetComponent<Storyline>().conversationPanel.GetComponent<Button>().onClick.AddListener(() =>
-                        {
-                            if (choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText)
-                            {
-                                choiceData[j].storylineChoice[l].SetActive(false);
-                                storylineManager.NextStoryline();
-                                return;
-                            }
-                            else
-                            {
-                                choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText = true;
-                                return;
-                            }
-                        });
-                    }
+                    // set first storyline choice active
+                    choiceData[j].storylineChoice[0].SetActive(true);
 
+
+                    for (int k = 0; k < choiceData[j].storylineChoice.Length; k++)
+                    {
+                        int l = k;
+
+                        if (l != choiceData[j].storylineChoice.Length - 1)
+                        {
+                            choiceData[j].storylineChoice[l].GetComponent<Storyline>().conversationPanel.GetComponent<Button>().onClick.AddListener(() =>
+                            {
+                                if (choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText)
+                                {
+                                    choiceData[j].storylineChoice[l].SetActive(false);
+                                    choiceData[j].storylineChoice[l + 1].SetActive(true);
+                                    return;
+                                }
+                                else
+                                {
+                                    choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText = true;
+                                    return;
+                                }
+                            });
+                        }
+                        else
+                        {
+                            choiceData[j].storylineChoice[l].GetComponent<Storyline>().conversationPanel.GetComponent<Button>().onClick.AddListener(() =>
+                            {
+                                if (choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText)
+                                {
+                                    choiceData[j].storylineChoice[l].SetActive(false);
+                                    storylineManager.NextStoryline();
+                                    return;
+                                }
+                                else
+                                {
+                                    choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText = true;
+                                    return;
+                                }
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    isFinishedText = true;
                 }
             });
         }

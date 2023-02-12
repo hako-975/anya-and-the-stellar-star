@@ -15,7 +15,7 @@ public class Choice : Storyline
     void Start()
     {
         storylineManager = GetComponentInParent<StorylineManager>();
-        
+
         if (backgroundImage == null)
         {
             backgroundImageReferences.sprite = null;
@@ -87,7 +87,16 @@ public class Choice : Storyline
 
         autoButton.onClick.AddListener(() =>
         {
-            // do something auto storyline
+            if (PlayerPrefsManager.instance.GetBoolIsAuto() == 1)
+            {
+                // set bool false
+                PlayerPrefsManager.instance.SetBoolIsAuto(0);
+            }
+            else
+            {
+                // set bool true
+                PlayerPrefsManager.instance.SetBoolIsAuto(1);
+            }
         });
 
         saveButton.onClick.AddListener(() =>
@@ -118,7 +127,7 @@ public class Choice : Storyline
 
             // storyline
             int j = i;
-            choiceInstantiate.GetComponent<Button>().onClick.AddListener(() => 
+            choiceInstantiate.GetComponent<Button>().onClick.AddListener(() =>
             {
                 if (isFinishedText)
                 {
@@ -132,7 +141,37 @@ public class Choice : Storyline
                     for (int k = 0; k < choiceData[j].storylineChoice.Length; k++)
                     {
                         int l = k;
+                        if (PlayerPrefsManager.instance.GetBoolIsAuto() == 1)
+                        {
+                            choiceData[j].storylineChoice[l].GetComponent<Storyline>().autoButton.GetComponent<Image>().color = Color.red;
 
+                            if (isFinishedText)
+                            {
+                                if (l != choiceData[j].storylineChoice.Length - 1)
+                                {
+                                    choiceData[j].storylineChoice[l].SetActive(false);
+                                    choiceData[j].storylineChoice[l + 1].SetActive(true);
+                                    return;
+                                }
+                                else
+                                {
+                                    choiceData[j].storylineChoice[l].SetActive(false);
+                                    storylineManager.NextStoryline();
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                choiceData[j].storylineChoice[l].GetComponent<Storyline>().isFinishedText = true;
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            choiceData[j].storylineChoice[l].GetComponent<Storyline>().autoButton.GetComponent<Image>().color = new Color(0.1803922f, 0.1411765f, 0.07450981f);
+                        }
+
+                        // jika bukan data terakhir
                         if (l != choiceData[j].storylineChoice.Length - 1)
                         {
                             choiceData[j].storylineChoice[l].GetComponent<Storyline>().conversationPanel.GetComponent<Button>().onClick.AddListener(() =>

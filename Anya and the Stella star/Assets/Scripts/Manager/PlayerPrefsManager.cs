@@ -25,6 +25,19 @@ public class PlayerPrefsManager : MonoBehaviour
         SceneManager.LoadScene("Loading");
     }
 
+    #region Auto
+    public int GetBoolIsAuto()
+    {
+        return PlayerPrefs.GetInt("IsAuto", 0);
+    }
+
+    public int SetBoolIsAuto(int boolean)
+    {
+        PlayerPrefs.SetInt("IsAuto", boolean);
+        return GetBoolIsAuto();
+    }
+    #endregion
+
     #region History
     public void SetHistoryCount(int count)
     {

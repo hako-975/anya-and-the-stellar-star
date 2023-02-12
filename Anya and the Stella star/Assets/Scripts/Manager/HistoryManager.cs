@@ -5,7 +5,7 @@ using UnityEngine;
 public class HistoryManager : MonoBehaviour
 {
     public GameObject contentHistory;
-    public GameObject chatBoxPrefabs;
+    public GameObject dialogBoxHistoryPrefab;
 
     void Start()
     {
@@ -21,13 +21,13 @@ public class HistoryManager : MonoBehaviour
 
         for (int i = 0; i < PlayerPrefs.GetInt("HistoryCount", 0); i++)
         {
-            GameObject historyChat = Instantiate(chatBoxPrefabs, Vector3.zero, Quaternion.identity, contentHistory.transform);
-            historyChat.GetComponent<ChatBox>().nameText.text = PlayerPrefs.GetString("HistoryName" + i, "???");
+            GameObject historyChat = Instantiate(dialogBoxHistoryPrefab, Vector3.zero, Quaternion.identity, contentHistory.transform);
+            historyChat.GetComponent<DialogBoxHistory>().nameText.text = PlayerPrefs.GetString("HistoryName" + i, "???");
             float R = PlayerPrefs.GetFloat("HistoryColorR" + i);
             float G = PlayerPrefs.GetFloat("HistoryColorG" + i);
             float B = PlayerPrefs.GetFloat("HistoryColorB" + i);
-            historyChat.GetComponent<ChatBox>().nameText.color = new Color(R, G, B);
-            historyChat.GetComponent<ChatBox>().conversationText.text = PlayerPrefs.GetString("HistoryConversation" + i);
+            historyChat.GetComponent<DialogBoxHistory>().nameText.color = new Color(R, G, B);
+            historyChat.GetComponent<DialogBoxHistory>().conversationText.text = PlayerPrefs.GetString("HistoryConversation" + i);
         }
     }
 }

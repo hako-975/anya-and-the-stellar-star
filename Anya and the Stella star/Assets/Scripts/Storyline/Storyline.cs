@@ -56,6 +56,7 @@ public class Storyline : MonoBehaviour
     public Button loadButton;
     public Button settingsButton;
 
+
     [HideInInspector]
     public bool isFinishedText = false;
 
@@ -148,7 +149,16 @@ public class Storyline : MonoBehaviour
 
         autoButton.onClick.AddListener(() =>
         {
-            // do something auto storyline
+            if (PlayerPrefsManager.instance.GetBoolIsAuto() == 1)
+            {
+                // set bool false
+                PlayerPrefsManager.instance.SetBoolIsAuto(0);
+            }
+            else
+            {
+                // set bool true
+                PlayerPrefsManager.instance.SetBoolIsAuto(1);
+            }
         });
 
         saveButton.onClick.AddListener(() =>
@@ -165,7 +175,29 @@ public class Storyline : MonoBehaviour
         {
             storylineManager.settingsPanel.SetActive(true);
         });
+    }
 
+    void Update()
+    {
+        if (PlayerPrefsManager.instance.GetBoolIsAuto() == 1)
+        {
+            autoButton.GetComponent<Image>().color = Color.red;
+            if (isFinishedText)
+            {
+                // BUG!!!
+                // StartCoroutine(SleepAndNext(1f));
+            }
+        }
+        else
+        {
+            autoButton.GetComponent<Image>().color = new Color(0.1803922f, 0.1411765f, 0.07450981f);
+        }
+    }
+
+    IEnumerator SleepAndNext(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        storylineManager.NextStoryline();
     }
 
     public IEnumerator ShowText()

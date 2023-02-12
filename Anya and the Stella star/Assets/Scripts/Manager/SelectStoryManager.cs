@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectStoryManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SelectStoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int levelAt = PlayerPrefsManager.instance.GetLevelAt();
+        
         var storyList = new List<Transform>();
 
         // get child in transform (current transform)
@@ -21,6 +24,11 @@ public class SelectStoryManager : MonoBehaviour
         }
 
         stories = storyList.ToArray();
+        
+        if (levelAt > stories.Length)
+        {
+            levelAt = stories.Length;
+        }
 
         for (int i = 0; i < stories.Length; i++)
         {
@@ -34,6 +42,15 @@ public class SelectStoryManager : MonoBehaviour
             createStory.GetComponent<StoryReference>().storyTo.text = "Story " + (i + 1).ToString();
             createStory.GetComponent<StoryReference>().titleStory.text = stories[i].GetComponent<Story>().titleStory;
             createStory.GetComponent<StoryReference>().coverStory.sprite = stories[i].GetComponent<Story>().coverStory;
+
+            if (i < levelAt)
+            {
+                createStory.GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                createStory.GetComponent<Button>().interactable = false;
+            }
         }
     }
 

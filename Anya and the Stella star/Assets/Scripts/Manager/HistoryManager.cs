@@ -22,12 +22,32 @@ public class HistoryManager : MonoBehaviour
         for (int i = 0; i < PlayerPrefs.GetInt("HistoryCount", 0); i++)
         {
             GameObject historyChat = Instantiate(dialogBoxHistoryPrefab, Vector3.zero, Quaternion.identity, contentHistory.transform);
-            historyChat.GetComponent<DialogBoxHistory>().nameText.text = PlayerPrefs.GetString("HistoryName" + i, "???");
-            float R = PlayerPrefs.GetFloat("HistoryColorR" + i);
-            float G = PlayerPrefs.GetFloat("HistoryColorG" + i);
-            float B = PlayerPrefs.GetFloat("HistoryColorB" + i);
-            historyChat.GetComponent<DialogBoxHistory>().nameText.color = new Color(R, G, B);
-            historyChat.GetComponent<DialogBoxHistory>().conversationText.text = PlayerPrefs.GetString("HistoryConversation" + i);
+            
+            var conversationText = historyChat.GetComponent<DialogBoxHistory>().conversationText;
+            conversationText.text = PlayerPrefs.GetString("HistoryConversation" + i);
+
+            float newTop = 25f;
+            float oldTop = 110f;
+            var recConversation = conversationText.GetComponent<RectTransform>();
+
+            var nameText = historyChat.GetComponent<DialogBoxHistory>().nameText;
+            nameText.text = PlayerPrefs.GetString("HistoryName" + i, "???");
+            
+            if (nameText.text != "")
+            {
+                float R = PlayerPrefs.GetFloat("HistoryColorR" + i);
+                float G = PlayerPrefs.GetFloat("HistoryColorG" + i);
+                float B = PlayerPrefs.GetFloat("HistoryColorB" + i);
+                nameText.color = new Color(R, G, B);
+                
+                // set conversation height
+                recConversation.offsetMax = new Vector2(recConversation.offsetMax.x, -oldTop);
+            }
+            else
+            {
+                // set conversation height
+                recConversation.offsetMax = new Vector2(recConversation.offsetMax.x, -newTop);
+            }
         }
     }
 }

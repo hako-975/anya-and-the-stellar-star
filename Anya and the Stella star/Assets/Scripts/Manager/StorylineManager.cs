@@ -10,6 +10,7 @@ public class StorylineManager : MonoBehaviour
     public GameObject title;
     public GameObject settingsPanel;
     public GameObject historyPanel;
+    public GameObject dialogMainMenuPanel;
 
     int currentStoryline = 0;
     
@@ -21,6 +22,9 @@ public class StorylineManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        settingsPanel.SetActive(false);
+        dialogMainMenuPanel.SetActive(false);
+
         var storylineList = new List<Transform>();
         
         foreach (Transform child in transform)
@@ -78,5 +82,15 @@ public class StorylineManager : MonoBehaviour
         title.GetComponent<Animation>().Play();
         yield return new WaitForSeconds(1f);
         storylines[0].gameObject.SetActive(true);
+    }
+
+    public void HomeButton()
+    {
+        dialogMainMenuPanel.SetActive(true);
+    }
+
+    public void MainMenuButton()
+    {
+        PlayerPrefsManager.instance.SetNextScene("Main Menu");
     }
 }

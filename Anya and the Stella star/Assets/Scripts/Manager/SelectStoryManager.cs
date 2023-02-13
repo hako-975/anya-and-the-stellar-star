@@ -36,21 +36,32 @@ public class SelectStoryManager : MonoBehaviour
             
             float widthStory = 1296f;
             float heightStory = 2304f;
-            createStory.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, widthStory);
-            createStory.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightStory);
-         
-            createStory.GetComponent<StoryReference>().storyTo.text = "Story " + (i + 1).ToString();
-            createStory.GetComponent<StoryReference>().titleStory.text = stories[i].GetComponent<Story>().titleStory;
-            createStory.GetComponent<StoryReference>().coverStory.sprite = stories[i].GetComponent<Story>().coverStory;
+
+            var rec = createStory.GetComponent<RectTransform>();
+            rec.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, widthStory);
+            rec.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, heightStory);
+
+            var storyRef = createStory.GetComponent<StoryReference>();
+            storyRef.storyTo.text = "Story " + (i + 1).ToString();
+            storyRef.titleStory.text = stories[i].GetComponent<Story>().titleStory;
+            storyRef.coverStory.sprite = stories[i].GetComponent<Story>().coverStory;
+
+            var storyBtn = createStory.GetComponent<Button>();
 
             if (i < levelAt)
             {
-                createStory.GetComponent<Button>().interactable = true;
+                storyBtn.interactable = true;
             }
             else
             {
-                createStory.GetComponent<Button>().interactable = false;
+                storyBtn.interactable = false;
             }
+
+            int j = i+1;
+            storyBtn.onClick.AddListener(() =>
+            {
+                PlayerPrefsManager.instance.SetNextScene("Story " + j);
+            });
         }
     }
 

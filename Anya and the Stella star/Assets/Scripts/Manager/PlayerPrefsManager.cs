@@ -14,6 +14,7 @@ public class PlayerPrefsManager : MonoBehaviour
     }
     #endregion
 
+    #region Scene
     public string GetNextScene()
     {
         return PlayerPrefs.GetString("NextScene", "Main Menu");
@@ -24,6 +25,7 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.SetString("NextScene", nextScene);
         SceneManager.LoadScene("Loading");
     }
+    #endregion
 
     #region Auto
     public int GetBoolIsAuto()
@@ -76,6 +78,19 @@ public class PlayerPrefsManager : MonoBehaviour
         DeleteKey("HistoryCount");
     }
 
+    #endregion
+
+    #region Save Load Data
+    public void SetSave(int saveDataTo, string storyTo, int pages, string title)
+    {
+        PlayerPrefs.SetString("SaveData" + saveDataTo, storyTo +"|"+ pages + "|" + title + "|" + System.DateTime.Now.ToString("HH:mm tt - dd/MM/yyyy"));
+        PlayerPrefs.Save();
+    }
+
+    public string GetSave(int saveDataTo)
+    {
+        return PlayerPrefs.GetString("SaveData" + saveDataTo);
+    }
     #endregion
 
     #region Level

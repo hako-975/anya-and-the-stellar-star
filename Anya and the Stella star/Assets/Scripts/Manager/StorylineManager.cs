@@ -10,6 +10,8 @@ public class StorylineManager : MonoBehaviour
     public GameObject title;
     public GameObject settingsPanel;
     public GameObject historyPanel;
+    public GameObject savePanel;
+    public GameObject loadPanel;
     public GameObject dialogMainMenuPanel;
 
     int currentStoryline = 0;

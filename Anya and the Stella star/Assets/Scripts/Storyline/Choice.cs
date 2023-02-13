@@ -101,12 +101,12 @@ public class Choice : Storyline
 
         saveButton.onClick.AddListener(() =>
         {
-            // do something save current storyline
+            storylineManager.savePanel.SetActive(true);
         });
 
         loadButton.onClick.AddListener(() =>
         {
-            // do something load current storyline
+            storylineManager.loadPanel.SetActive(true);
         });
 
         settingsButton.onClick.AddListener(() =>
